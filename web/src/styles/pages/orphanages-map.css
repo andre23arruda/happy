@@ -1,0 +1,110 @@
+#page-map {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+}
+#page-map aside {
+    background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+    width: 440px;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#page-map aside h2{
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 42px;
+    margin-top: 80px;
+}
+
+#page-map aside p{
+    font-style: normal;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 24px;
+}
+
+#page-map footer {
+    bottom: 0;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 28px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#page-map footer span {
+    font-weight: 200;
+}
+#page-map footer span {
+    font-weight: 200;
+}
+
+#page-map .leaflet-container {
+    z-index: 5;
+}
+
+#page-map .create-orphanage {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    width: 64px;
+    height: 64px;
+
+    background-color: #15C3D6;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 30px;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+
+    transition: 0.2s;
+}
+
+#page-map .create-orphanage:hover { background-color: #17D6EB; }
+
+#page-map .map-popup .leaflet-popup-content-wrapper {
+    background-color: rgba(255, 255, 255, 0.802);
+    box-shadow: none;
+    transform: translateX(5px);
+}
+#page-map .map-popup .leaflet-popup-content {
+    background-color: rgba(255, 255, 255, 0.802);
+    color: #0089A5;
+    font-size: 14pt;
+    font-family: cursive;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 7px;
+}
+#page-map .map-popup .leaflet-popup-content a {
+    width: 40px;
+    height: 40px;
+    left: 268px;
+    top: 12px;
+    border-radius: 12px;
+    background-color: #0089A5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+#page-map .map-popup .leaflet-popup-content a:hover {
+    background-color: #6cbfd0;
+}
+#page-map .map-popup .leaflet-popup-tip-container {
+    visibility: hidden;
+}

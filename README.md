@@ -52,11 +52,11 @@ Repectivamente:
 - Instalar todos os pacotes necessários para rodar a aplicação
 - Executar as migrações
 
-#### Terceiro: Obter IPV4 para o seu pc servir os dados da API para os dispostivos da sua rede
+#### Terceiro: Obter endereço para o seu pc servir os dados da API para os dispostivos da sua rede
 ```sh
-python get_IPV4.py
+python get_api_route.py
 ```
-**Seu IP será exibido em tela. Guarde-o. Será necessário colocá-lo no frontend e no mobile (ROTA_API)**
+**O endereço será exibido em tela. Guarde-o. Será necessário colocá-lo no frontend e no mobile (ROTA_API)**
 
 #### Por fim: deixar a API rodando
 
@@ -100,7 +100,7 @@ Repectivamente:
 Necessário ter o expo instalado na máquina e ter o expo instalado no celular.
 
 #### Primeiro: adicionar endereço do backend
-- Abrir *frontend/src/services/api.ts* e adicionar o endereço da sua API (ROTA_API)
+- Abrir *mobile/src/services/api.ts* e adicionar o endereço da sua API (ROTA_API)
 
 #### Segundo: no terminal, rodar
 ```sh

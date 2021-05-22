@@ -1,12 +1,12 @@
 import socket
 
 
-def get_ip_address():
+def get_api_route():
     '''Return IP adress'''
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
-    print(f'Seu IPV4: { ip_address }')
+    print(f'ROTA API: { ip_address }:8000')
 
 
 if __name__ == '__main__':
-    get_ip_address()
+    get_api_route()

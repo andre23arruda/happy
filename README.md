@@ -30,7 +30,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 **Happy é uma aplicação feita para listar casas de acolhimento de crianças e jovens em sua cidade. Exibindo horários de visita e instruções.**
 
-### Instalação
 ## Instalação
 ## Backend
 Necessário ter o Python instalado em sua máquina. De preferência 3.6 para cima.

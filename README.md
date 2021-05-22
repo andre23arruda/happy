@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Happy" title="#delicinha" src="web/src/images/logo.svg" width="200px" />
+    <img alt="Happy" src="web/src/images/logo.svg" width="200px" />
 </h1>
 
 <h4 align="center">
@@ -28,28 +28,42 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Expo](https://expo.io/)
 
 ## 💻 Projeto
+**Happy é uma aplicação feita para listar casas de acolhimento de crianças e jovens em sua cidade. Exibindo horários de visita e instruções.**
+
 ### Instalação
-#### Para o backend, é necessário ter o Python instalado em sua máquina. De preferência 3.6 para cima.
-No terminal, rodar:
+## Instalação
+## Backend
+Necessário ter o Python instalado em sua máquina. De preferência 3.6 para cima.
+
+#### Primeiro: renomear arquivo com variáveis de ambiente
+-  **Renomear _backend_django/setup/env_example.py_ para _backend_django/setup/env.py_**
+
+#### Segundo: no terminal, rodar
 ```sh
 cd backend_django
 python -m venv venv
 . venv/Scripts/activate
 pip install -r requirements.txt
-python manage.py runserver SEU_IPV4
+python manage.py migrate
 ```
 Repectivamente:
-- Para entrar na pasta dos arquivos do backend
+- Entrar na pasta dos arquivos do backend
 - Criar um ambiente virtual
 - Ativar o ambiente virtual
 - Instalar todos os pacotes necessários para rodar a aplicação
-- Rodar API
+- Executar as migrações
 
-Depois:
-- Abrir e renomear env_example.py para env.py
+#### Terceiro: Obter IPV4 para o seu pc servir os dados da API para os dispostivos da sua rede
+```sh
+python get_IPV4.py
+```
+**Seu IP será exibido em tela. Guarde-o. Será necessário colocá-lo no frontend e no mobile (ROTA_API)**
 
-##### Esse SEU_IPV4 é seu IPv4 encontrado no terminal com ipconfig/all. Necessário para o seu pc servir os dados da API para os dispostivos da sua rede.
-Deixe o runserver rodando, ele é a API que fornecerá as informações
+#### Por fim: deixar a API rodando
+
+```sh
+python manage.py runserver ROTA_API
+```
 ![API 0](/images/api_0.png?raw=true)
 
 ![API 1](/images/api_1.png?raw=true)
@@ -57,18 +71,25 @@ Deixe o runserver rodando, ele é a API que fornecerá as informações
 
 ![API 3](/images/api_3.png?raw=true)
 
-#### Para o frontend é necessário ter o node e o yarn instalados na máquina
-No terminal, rodar:
+## Frontend
+Necessário ter o node e o yarn instalados na máquina
+
+#### Primeiro: adicionar endereço do backend
+- Abrir *web/src/services/api.ts* e adicionar o endereço da sua API (ROTA_API)
+
+#### Segundo: Token mapbox
+- Criar uma conta no mapbox, obter um token (é de graça) atualizar *web/.env_example*
+
+#### Terceiro: no terminal, rodar
 ```sh
 cd web
+yarn install
 yarn start
 ```
 Repectivamente:
 - Para entrar na pasta dos arquivos do frontend
-- Instalar os pacotes do projeto e rodar
-
-Depois:
-- Abrir api.ts e adicionar o endereço da sua API
+- Instalar os pacotes do projeto
+- Rodar
 
 ![Web 1](/images/web_1.png?raw=true)
 
@@ -76,19 +97,26 @@ Depois:
 
 ![Web 3](/images/web_3.png?raw=true)
 
-#### Para o mobile é preciso ter o node, yarn e expo instalados na máquina e ter o expo instalado no celular
-Fica melhor rodar no celular para não comer a memória do pc com emulador
-No terminal, rodar:
+## Mobile
+Necessário ter o expo instalado na máquina e ter o expo instalado no celular.
+
+#### Primeiro: adicionar endereço do backend
+- Abrir *frontend/src/services/api.ts* e adicionar o endereço da sua API (ROTA_API)
+
+#### Segundo: no terminal, rodar
 ```sh
 cd mobile
+yarn install
 expo start
 ```
 
 Repectivamente:
 - Para entrar na pasta com os arquivos do mobile
-- Instalar pacotes do projeto e rodar
+- Instalar pacotes do projeto
+- Rodar
 
-Depois:
-- Abrir api.ts e adicionar o endereço da sua API
+#### Terceiro: rodar expo no celular
+- Abrir expo no celular
+- Ler QR code e executar o app
 
 ![Mobile 1](/images/mobile_1.png?raw=true)

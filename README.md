@@ -61,7 +61,7 @@ python get_api_route.py
 #### Por fim: deixar a API rodando
 
 ```sh
-python manage.py runserver ROTA_API
+python manage.py runserver_ip
 ```
 ![API 0](/images/api_0.png?raw=true)
 

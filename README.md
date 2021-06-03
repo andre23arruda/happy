@@ -47,6 +47,7 @@ Ter instalado:
 ```sh
 # Entrar na pasta dos arquivos do backend
 cd backend
+
 # Criar um ambiente virtual
 python -m venv venv
 

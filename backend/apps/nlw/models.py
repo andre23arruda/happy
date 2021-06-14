@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from datetime import date
 
@@ -24,6 +25,5 @@ class Image(models.Model):
 
     def __str__(self):
         if self.path_image:
-            # return f'http://127.0.0.1:8000{ self.path_image.url }'
-            return f'http://192.168.0.12:8000{ self.path_image.url }' # rota do meu pc na rede
+            return f'{ settings.BASE_URL }{ self.path_image.url }'
         return ''

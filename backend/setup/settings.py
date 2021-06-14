@@ -9,6 +9,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = os.environ['DEBUG']
 ALLOWED_HOSTS = json.loads(os.environ['ALLOWED_HOSTS'])
+BASE_URL = os.environ['BASE_URL']
 
 LOGGING_CONFIG = None
 

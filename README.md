@@ -41,7 +41,7 @@ Ter instalado:
 
 ### Backend
 #### Primeiro: renomear arquivo com variáveis de ambiente
--  **Renomear _backend_django/setup/env_example.py_ para _backend_django/setup/env.py_**
+-  **Renomear _backend/setup/env_example.py_ para _backend/setup/env.py_**
 
 #### Segundo: no terminal, rodar
 ```sh
@@ -72,7 +72,10 @@ python runserver.py
 ![API 3](/images/api_3.png?raw=true)
 
 ### Frontend
-#### No terminal, rodar
+#### Primeiro: alterar a chave do mapbox
+-  **Renomear _web/.env_example para _web/.env_**
+
+#### Segundo: no terminal, rodar
 ```sh
 # Entrar na pasta dos arquivos do frontend
 cd web

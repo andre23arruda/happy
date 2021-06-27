@@ -11,10 +11,9 @@ export default function Sidebar() {
 
     return (
         <aside className="app-sidebar">
-            <Link to="/app" className="enter-app">
+            <Link to="/map" className="enter-app">
                 <img src={ mapMarkerImg } alt="Happy" />
             </Link>
-
 
             <footer>
                 <button type="button" onClick={ goBack }>

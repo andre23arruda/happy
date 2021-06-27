@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-nati
 import MapView, { Marker, Callout } from 'react-native-maps'
 import { Feather } from '@expo/vector-icons'
 
-import { useNavigation, useFocusEffect, useIsFocused } from '@react-navigation/native'
+import { useNavigation, useIsFocused } from '@react-navigation/native'
 
 import mapMarker from '../images/map-marker.png'
 import api from '../services/api'
@@ -40,38 +40,33 @@ export default function OrphanagesMap() {
         <View style={styles.container}>
             <MapView
                 style={styles.mapStyle}
-                initialRegion={ {
-                latitude: -19.0058346,
-                longitude: -57.6059316,
-                latitudeDelta: 0.008,
-                longitudeDelta: 0.008,
+                initialRegion={{
+                    latitude: -19.0058346,
+                    longitude: -57.6059316,
+                    latitudeDelta: 0.008,
+                    longitudeDelta: 0.008,
                 }}>
 
-                { orphanages.map(orphanage => {
-                    return (
-                        <Marker
-                            key={ orphanage.id }
-                            icon={ mapMarker }
-                            calloutAnchor={{
-                                x: 2.7,
-                                y: 0.8,
-                            }}
-                            coordinate={{
-                                latitude: orphanage.latitude,
-                                longitude: orphanage.longitude,
-                            }}
-                        >
-                            {/* Aqui tem que passar uma arrowfunction. Se passar apenas a função, ela já será executada. */}
-                            <Callout tooltip onPress={ () =>  handleNavigateToOrphanageDetails(orphanage.id)}>
-                                <View style={ styles.calloutContainer }>
+                { orphanages.map(orphanage => (
+                    <Marker
+                        key={ orphanage.id }
+                        icon={ mapMarker }
+                        calloutAnchor={{
+                            x: 2.7,
+                            y: 0.8,
+                        }}
+                        coordinate={{
+                            latitude: orphanage.latitude,
+                            longitude: orphanage.longitude,
+                        }}
+                    >
+                        <Callout tooltip onPress={ () =>  handleNavigateToOrphanageDetails(orphanage.id)}>
+                            <View style={ styles.calloutContainer }>
                                 <Text style={ styles.calloutText }>{ orphanage.name }</Text>
-                                </View>
-                            </Callout>
-                        </Marker>
-                    )
-                })}
-
-
+                            </View>
+                        </Callout>
+                    </Marker>
+                ))}
             </MapView>
 
             <View style={ styles.footer }>
@@ -89,10 +84,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+
     mapStyle: {
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        width: '100%',
+        height: '100%',
     },
+
     calloutContainer: {
         width: 150,
         height: 46,
@@ -101,16 +98,18 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         justifyContent: 'center',
     },
+
     calloutText: {
         color: '#0089a5',
         fontSize: 14,
         fontWeight: 'bold',
     },
+
     footer: {
         position: 'absolute',
-        left: 24,
-        right: 24,
-        bottom: 32,
+        left: 18,
+        right: 18,
+        bottom: 30,
         backgroundColor: '#FFF',
         borderRadius: 20,
         height: 56,
@@ -119,10 +118,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         elevation: 3,
+        opacity: 0.95
     },
+
     footerText: {
         color: '#8fa7b3',
     },
+
     createButton: {
         width: 56,
         height: 56,
@@ -131,4 +133,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+
 })

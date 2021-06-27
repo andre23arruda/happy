@@ -12,7 +12,7 @@ function addDarkmodeWidget() {
     new Darkmode(options).showWidget()
     const darkModeToggle = document.querySelector('button.darkmode-toggle')
     darkModeToggle.addEventListener('click', () => {
-        document.querySelector('body').classList.value.includes('darkmode--activated') ? setColorTheme('dark') : setColorTheme('light')
+        document.querySelector('html').classList.toggle('dark')
     })
     initDarkMode(darkmode)
 }

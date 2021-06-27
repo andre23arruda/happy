@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
 import { useRoute, useNavigation } from '@react-navigation/native';
@@ -20,16 +20,18 @@ export default function OrphanageData() {
   const route = useRoute() as RouteParams
   const { latitude, longitude } = route.params.position
 
-  const [ name, setName ] = useState('') // Informações do orfanato
-  const [ about, setAbout ] = useState('') // Informações do orfanato
-  const [ instructions, setInstructions ] = useState('') // Informações do orfanato
-  const [ opening_hours, setOpeningHours ] = useState('') // Informações do orfanato
-  const [ open_on_weekends, setOpenOnWeekends ] = useState(true) // Informações do orfanato
-  const [ images, setImages ] = useState<string[]>([]) // Informações do orfanato
+  const [ name, setName ] = useState('')
+  const [ whatsapp, setWhatsapp ] = useState('')
+  const [ about, setAbout ] = useState('')
+  const [ instructions, setInstructions ] = useState('')
+  const [ opening_hours, setOpeningHours ] = useState('')
+  const [ open_on_weekends, setOpenOnWeekends ] = useState(true)
+  const [ images, setImages ] = useState<string[]>([])
 
   async function handleCreateOrphanage() {
     const dataForm = new FormData()
     dataForm.append('name', name)
+    dataForm.append('whatsapp', whatsapp)
 		dataForm.append('about', about)
 		dataForm.append('latitude', String(latitude))
 		dataForm.append('longitude', String(longitude))
@@ -46,7 +48,7 @@ export default function OrphanageData() {
     });
 
 		await api.post('orphanages/', dataForm)
-		alert('Cadastro realizado com sucesso!')
+		Alert.alert('Uhulll!','Cadastro realizado com sucesso!')
 
 		navigation.navigate('OrphanagesMap')
   }
@@ -54,7 +56,7 @@ export default function OrphanageData() {
   async function handleSelectImages() {
     const { status } = await ImagePicker.requestCameraRollPermissionsAsync()
     if (status !== 'granted') {
-      alert('Precisamos de acesso às suas fotos...')
+      Alert.alert('Ops', 'Precisamos de acesso às suas fotos...')
       return
     }
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -81,6 +83,13 @@ export default function OrphanageData() {
         onChangeText={ setName }
       />
 
+      <Text style={styles.label}>Whatsapp</Text>
+      <TextInput
+        style={styles.input}
+        value={ whatsapp }
+        onChangeText={ setWhatsapp }
+      />
+
       <Text style={styles.label}>Sobre</Text>
       <TextInput
         style={[styles.input, { height: 110 }]}
@@ -89,12 +98,7 @@ export default function OrphanageData() {
         onChangeText={ setAbout }
       />
 
-      {/* <Text style={styles.label}>Whatsapp</Text>
-      <TextInput
-        style={styles.input}
-      /> */}
-
-      <Text style={styles.label}>Fotos</Text>
+      <Text style={styles.label}>Foto</Text>
       <ScrollView horizontal style={styles.imagesContainer }>
         { images.map( (image, index) => {
           return (
@@ -122,10 +126,11 @@ export default function OrphanageData() {
         style={styles.input}
         value={ opening_hours }
         onChangeText={ setOpeningHours }
+        placeholder="8:00 - 18:00"
       />
 
       <View style={styles.switchContainer}>
-        <Text style={styles.label}>Atende final de semana?</Text>
+        <Text style={styles.label}>Atende final de semana? </Text>
         <Switch
           thumbColor="#fff"
           trackColor={{ false: '#ccc', true: '#39CC83' }}

@@ -58,8 +58,8 @@ form.create-orphanage-form .input-block label {
 }
 
 form.create-orphanage-form .input-block label span {
-  font-size: 14px;
-  color: #8FA7B3;
+  font-size: 12px;
+  color: #8fa7b3b6;
   margin-left: 24px;
   line-height: 24px;
 }
@@ -77,6 +77,10 @@ form.create-orphanage-form .input-block textarea {
 form.create-orphanage-form .input-block input {
   height: 64px;
   padding: 0 16px;
+}
+
+form.create-orphanage-form .input-block input::placeholder {
+  color: #d6d6d6;
 }
 
 form.create-orphanage-form .input-block textarea {

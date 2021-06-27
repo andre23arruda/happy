@@ -23,7 +23,7 @@ function Landing() {
               <span>Mato Grosso do Sul</span>
             </div>
 
-            <Link to="/app" className="enter-app">< FiArrowRight /></Link>
+            <Link to="/map" className="enter-app">< FiArrowRight /></Link>
           </div>
 
         </div>

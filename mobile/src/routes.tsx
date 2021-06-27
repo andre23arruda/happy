@@ -21,7 +21,7 @@ export default function Routes() {
                 <Screen
                     name="OrphanageDetails"
                     component={ OrphanageDetails }
-                    options={ {headerShown: true, header: () => <Header title="Orfanato" showCancel={ false }></Header>} }
+                    options={ {headerShown: true, header: () => <Header title="Detalhes" showCancel={ false }></Header>} }
                 />
 
                 <Screen

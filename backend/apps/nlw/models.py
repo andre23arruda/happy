@@ -1,17 +1,5 @@
-from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from django.db import models
-from datetime import date
-
-
-class Image(models.Model):
-    '''Model definition for Images'''
-    image = models.ImageField(upload_to=f'images/%Y/%m/%d/',)
-    added_at = models.DateTimeField(auto_now_add=True)
-
-    def url(self):
-        if self.image:
-            return f'{ settings.BASE_URL }{ self.image.url }'
-        return ''
 
 
 class Orphanage(models.Model):
@@ -25,8 +13,20 @@ class Orphanage(models.Model):
     instructions = models.TextField(blank=True, null=True)
     opening_hours = models.CharField(max_length=100, blank=True, null=True)
     open_on_weekends = models.BooleanField(default=False)
-    images = models.ManyToManyField(Image, related_name='images', blank=True, null=True)
-    is_working = models.BooleanField(default=True)
+    is_working = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+
+
+class OrphanageImage(models.Model):
+    '''Model definition for Images'''
+    orphanage = models.ForeignKey(Orphanage, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=f'images/%Y/%m/%d/',)
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    def absolute_url(self, request):
+        if self.image:
+            http = request.build_absolute_uri().split('://')[0]
+            return f'{ http }://{ get_current_site(request) }{ self.image.url }'
+        return ''

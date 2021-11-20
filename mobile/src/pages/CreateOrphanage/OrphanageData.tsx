@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
+import { ScrollView, View, Switch, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker'
 import api from '../../services/api';
+import styles from './OrphanageDataStyles'
 
 interface RouteParams {
   params: {
@@ -37,7 +38,7 @@ export default function OrphanageData() {
 		dataForm.append('longitude', String(longitude))
 		dataForm.append('instructions', instructions)
 		dataForm.append('opening_hours', opening_hours)
-		dataForm.append('open_on_weekends', String(open_on_weekends))
+		dataForm.append('open_on_weekends', open_on_weekends ? String(open_on_weekends) : '')
 
 		images.forEach((image, index) => {
 			dataForm.append('images', {
@@ -54,7 +55,7 @@ export default function OrphanageData() {
   }
 
   async function handleSelectImages() {
-    const { status } = await ImagePicker.requestCameraRollPermissionsAsync()
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
     if (status !== 'granted') {
       Alert.alert('Ops', 'Precisamos de acesso às suas fotos...')
       return
@@ -85,6 +86,7 @@ export default function OrphanageData() {
 
       <Text style={styles.label}>Whatsapp</Text>
       <TextInput
+        keyboardType='numeric'
         style={styles.input}
         value={ whatsapp }
         onChangeText={ setWhatsapp }
@@ -121,7 +123,7 @@ export default function OrphanageData() {
         onChangeText={ setInstructions }
       />
 
-      <Text style={styles.label}>Horario de visitas</Text>
+      <Text style={styles.label}>Horário de visitas</Text>
       <TextInput
         style={styles.input}
         value={ opening_hours }
@@ -145,85 +147,3 @@ export default function OrphanageData() {
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
-  title: {
-    color: '#5c8599',
-    fontSize: 24,
-    marginBottom: 32,
-    paddingBottom: 24,
-    borderBottomWidth: 0.8,
-    borderBottomColor: '#D3E2E6'
-  },
-
-  label: {
-    color: '#8fa7b3',
-    marginBottom: 8,
-  },
-
-  comment: {
-    fontSize: 11,
-    color: '#8fa7b3',
-  },
-
-  input: {
-    backgroundColor: '#fff',
-    borderWidth: 1.4,
-    borderColor: '#d3e2e6',
-    borderRadius: 20,
-    height: 56,
-    paddingVertical: 18,
-    paddingHorizontal: 24,
-    marginBottom: 16,
-    textAlignVertical: 'top',
-  },
-
-  imagesContainer: {
-    flexDirection: 'row',
-  },
-
-  imagePreview: {
-    width: 64,
-    height: 64,
-    margin: 2,
-    borderRadius: 5,
-  },
-
-  imagesInput: {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    borderStyle: 'dashed',
-    borderColor: '#96D2F0',
-    borderWidth: 1.4,
-    borderRadius: 20,
-    height: 56,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 32,
-    marginTop: 10,
-  },
-
-  switchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 16,
-  },
-
-  nextButton: {
-    backgroundColor: '#15c3d6',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 56,
-    marginTop: 32,
-  },
-
-  nextButtonText: {
-    fontSize: 16,
-    color: '#FFF',
-  }
-})

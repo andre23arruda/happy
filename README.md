@@ -48,11 +48,16 @@ Ter instalado:
 # Entrar na pasta dos arquivos do backend
 cd backend
 
+# Renomear env_example.py para env.py
+cp setup/env_example.py setup/env.py
+
 # Criar um ambiente virtual
 python -m venv venv
 
 # Ativar o ambiente virtual
 . venv/Scripts/activate
+# ou . venv/bin/activate
+# ou source venv/Scripts/activate
 
 # Instalar os pacotes necessários
 pip install -r requirements.txt
@@ -60,16 +65,17 @@ pip install -r requirements.txt
 # Executar as migrações
 python manage.py migrate
 
-# Rodar backend
+# Criar superusuário (poderá fazer login e entrar no admin)
+. create_su.sh
+# username -> teste
+# password -> teste1234
+
+# Start
 python runserver.py
 ```
 
 ![API 0](/images/api_0.png?raw=true)
 
-![API 1](/images/api_1.png?raw=true)
-![API 2](/images/api_2.png?raw=true)
-
-![API 3](/images/api_3.png?raw=true)
 
 ### Frontend
 #### Primeiro: alterar a chave do mapbox
@@ -77,7 +83,7 @@ python runserver.py
 
 #### Segundo: no terminal, rodar
 ```sh
-# Entrar na pasta dos arquivos do frontend
+# Entrar na pasta dos arquivos do projeto frontend
 cd web
 
 # Instalar os pacotes do projeto
@@ -96,7 +102,7 @@ yarn start
 ### Mobile
 #### No terminal, rodar
 ```sh
-# Entrar na pasta dos arquivos do frontend
+# Entrar na pasta dos arquivos do projeto mobile
 cd mobile
 
 # Instalar os pacotes do projeto

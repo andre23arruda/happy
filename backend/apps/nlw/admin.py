@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Orphanage, Image
+from .models import Orphanage, OrphanageImage
 
 
 @admin.register(Orphanage)
@@ -12,8 +12,8 @@ class OrphanageRegister(admin.ModelAdmin):
     ordering = ('name',)
 
 
-@admin.register(Image)
-class ImageRegister(admin.ModelAdmin):
+@admin.register(OrphanageImage)
+class OrphanageImageRegister(admin.ModelAdmin):
     list_display = ('id', 'added_at')
     list_display_links = ('id',)
     list_per_page = 25

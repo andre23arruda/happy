@@ -40,8 +40,8 @@ Ter instalado:
 - [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 
 ### Backend
-#### Primeiro: renomear arquivo com variáveis de ambiente
--  **Renomear _backend/setup/env_example.py_ para _backend/setup/env.py_**
+#### Primeiro: modificar variáveis de ambiente (se houver)
+-  **_backend/setup/env_example.py_**
 
 #### Segundo: no terminal, rodar
 ```sh
@@ -71,7 +71,7 @@ python manage.py migrate
 # password -> teste1234
 
 # Start
-python runserver.py
+. run.sh
 ```
 
 ![API 0](/images/api_0.png?raw=true)

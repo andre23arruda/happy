@@ -1,5 +1,11 @@
 from django.contrib.sites.shortcuts import get_current_site
+from django.conf.locale.pt_BR import formats as portuguese
+from django.conf.locale.en import formats as english
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+portuguese.DATE_FORMAT = 'd/m/Y'
+english.DATE_FORMAT = 'd/m/Y'
 
 
 class Orphanage(models.Model):
@@ -19,11 +25,19 @@ class Orphanage(models.Model):
         return self.name
 
 
+
 class OrphanageImage(models.Model):
     '''Model definition for Images'''
     orphanage = models.ForeignKey(Orphanage, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=f'images/%Y/%m/%d/',)
     added_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Image')
+        verbose_name_plural = _('Images')
+
+    def __str__(self):
+        return f'Image { self.id } - { self.orphanage }'
 
     def absolute_url(self, request):
         if self.image:

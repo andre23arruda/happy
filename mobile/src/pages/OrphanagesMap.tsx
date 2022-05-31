@@ -25,7 +25,7 @@ export default function OrphanagesMap() {
     const [ orphanages, setOrphanages ] = useState<Orphanage[]>( [] )
 
     useEffect(() => {
-        api.get(`orphanages/`).then(response => {
+        api.get(`happy/orphanages/`).then(response => {
             setOrphanages(response.data)
         })
     }, [isFocused])

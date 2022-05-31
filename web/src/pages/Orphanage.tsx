@@ -31,7 +31,7 @@ export default function Orphanage() {
 	const [ imageIndex, setImageIndex ] = useState(0) // Imagem atual exibida, começa com zero
 
 	useEffect( () => {
-		api.get(`orphanages/${ headerParams.id }/`).then(response => {
+		api.get(`happy/orphanages/${ headerParams.id }/`).then(response => {
 			console.log(response.data);
 
 			setOrphanage(response.data)

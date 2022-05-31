@@ -39,7 +39,7 @@ export default function OrphanageDetails() {
 	const [ orphanage, setOrphanage ] = useState<Orphanage>()
 
 	useEffect( () => {
-		api.get(`orphanages/${ route.params.id }/`).then(response => {
+		api.get(`happy/orphanages/${ route.params.id }/`).then(response => {
 		console.log(response.data)
 		setOrphanage(response.data)
 		})

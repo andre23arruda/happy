@@ -22,7 +22,7 @@ def put_ip_in_api_file(folder: str):
             if not line.startswith(FILE_PATTERN):
                 f.write(line)
             else:
-                f.write(f'{ FILE_PATTERN } = `{ get_ip_address() }:{ PORT }`\n')
+                f.write(f'{ FILE_PATTERN } = `{ get_ip_address() }`\n')
 
         f.truncate()
 
@@ -33,6 +33,6 @@ def main():
 
 
 if __name__ == '__main__':
-    put_ip_in_api_file('web')
+    # put_ip_in_api_file('web')
     put_ip_in_api_file('mobile')
     main()

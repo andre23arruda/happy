@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from nlw.models import Orphanage
+from ..models import Orphanage
+
 
 class OrphanageSerializer(serializers.ModelSerializer):
     '''Orphanage Serializer '''

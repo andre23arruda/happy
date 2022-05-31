@@ -11,7 +11,7 @@ def get_ip_address():
 
 def put_ip_in_api_file(folder: str):
     '''Put ip address in api.js'''
-    FILE_PATTERN = 'const ROTA_API'
+    FILE_PATTERN = 'const API_URL'
     file_path = fr'../{ folder }/src/services/api.ts'
 
     with open(file_path, 'r+') as f:
@@ -33,6 +33,6 @@ def main():
 
 
 if __name__ == '__main__':
-    put_ip_in_api_file('web')
+    # put_ip_in_api_file('web')
     put_ip_in_api_file('mobile')
     main()

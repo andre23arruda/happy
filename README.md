@@ -6,11 +6,6 @@
   🚀 Next Level Week 3
 </h4>
 
-<p align="center">
- <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=7159c1&labelColor=000000" alt="PRs welcome!" />
-
-  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=7159c1&labelColor=000000">
-</p>
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -38,26 +33,26 @@ Ter instalado:
 - [Python](https://www.python.org/downloads/)
 - [Node](https://nodejs.org/en/download/)
 - [Yarn](https://classic.yarnpkg.com/en/docs/install/)
+- [Expo](https://docs.expo.dev/get-started/installation/)
 
 ### Backend
-#### Primeiro: modificar variáveis de ambiente (se houver)
--  **_backend/setup/env_example.py_**
-
-#### Segundo: no terminal, rodar
+#### No terminal, rodar
 ```sh
 # Entrar na pasta dos arquivos do backend
 cd backend
 
 # Renomear env_example.py para env.py
 cp setup/env_example.py setup/env.py
+# ADICIONE OS VALORES CORRETOS
 
 # Criar um ambiente virtual
 python -m venv venv
 
 # Ativar o ambiente virtual
-. venv/Scripts/activate
-# ou . venv/bin/activate
-# ou source venv/Scripts/activate
+. activate.sh
+# ou
+. venv/Scripts/activate # windows
+. venv/bin/activate # linux
 
 # Instalar os pacotes necessários
 pip install -r requirements.txt
@@ -74,17 +69,16 @@ python manage.py migrate
 . run.sh
 ```
 
-![API 0](/images/api_0.png?raw=true)
-
 
 ### Frontend
-#### Primeiro: alterar a chave do mapbox
--  **Renomear _web/.env_example para _web/.env_**
-
-#### Segundo: no terminal, rodar
+#### No terminal, rodar
 ```sh
 # Entrar na pasta dos arquivos do projeto frontend
 cd web
+
+# Renomear .env_example para .env
+cp .env_example .env
+# ADICIONE OS VALORES CORRETOS
 
 # Instalar os pacotes do projeto
 yarn install
@@ -93,11 +87,25 @@ yarn install
 yarn start
 ```
 
-![Web 1](/images/web_1.png?raw=true)
 
-![Web 2](/images/web_2.png?raw=true)
+<div align="center">
+    <img alt="Screen 1" title="Screen 1" src="images/web_1.png?raw=true" width="400px" />
+</div>
+<p align="center">Screen 1</p>
+<hr>
 
-![Web 3](/images/web_3.png?raw=true)
+<div align="center">
+    <img alt="Screen 2" title="Screen 2" src="images/web_2.png?raw=true" width="400px" />
+</div>
+<p align="center">Screen 2</p>
+<hr>
+
+<div align="center">
+    <img alt="Screen 3" title="Screen 3" src="images/web_3.png?raw=true" width="400px" />
+</div>
+<p align="center">Screen 3</p>
+<hr>
+
 
 ### Mobile
 #### No terminal, rodar

@@ -29,7 +29,7 @@ class Orphanage(models.Model):
 class OrphanageImage(models.Model):
     '''Model definition for Images'''
     orphanage = models.ForeignKey(Orphanage, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=f'images/%Y/%m/%d/',)
+    image = models.ImageField(upload_to=f'happy/%Y/%m/%d/',)
     added_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

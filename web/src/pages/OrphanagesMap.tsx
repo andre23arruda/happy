@@ -23,7 +23,7 @@ function OrphanagesMap() {
 	// esse <Orphanage[]> informa que a variável será uma lista do tipo Orphanage
 	// renderiza de acordo com mudança
   	useEffect( () => {
-		api.get('orphanages/').then(response => {
+		api.get('happy/orphanages/').then(response => {
 			setOrphanages(response.data) // results porque está vindo do django
 		})
 	}, [] )

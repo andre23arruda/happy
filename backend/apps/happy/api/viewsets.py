@@ -1,26 +1,27 @@
-from django.forms.models import model_to_dict
+import json
+from django.http import QueryDict
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.response import Response
 
-from nlw.serializers import OrphanageSerializer
-from nlw.models import Orphanage, OrphanageImage
+from .serializers import OrphanageSerializer
+from ..models import Orphanage, OrphanageImage
 
 
-def create_images(images_data, orphanage):
-    '''Create images instances and return list of created instances'''
-    for image in images_data:
+def create_images(images: list, orphanage: Orphanage):
+    '''Create images instances'''
+    for image in images:
         OrphanageImage.objects.create(
             orphanage=orphanage,
-            image=image)
+            image=image
+        )
 
-def clean_data(data_dict):
+def clean_data(data_dict: dict):
     '''Clean data'''
-    data_dict['open_on_weekends'] = True if data_dict.get('open_on_weekends') else False
-    data_dict['is_working'] = True if data_dict.get('is_working') else False
+    data_dict['open_on_weekends'] = json.loads(data_dict.get('open_on_weekends', 'false'))
+    data_dict['is_working'] = True
     data_dict.pop('images', None)
-    data_dict.pop('csrfmiddlewaretoken', None)
     return data_dict
 
 
@@ -43,9 +44,14 @@ class OrphanagesViewSet(viewsets.ModelViewSet):
 
     def create(self, serializer):
         '''Create Orphanage'''
-        data = serializer.data
-        data_dict = clean_data(data.dict())
-        orphanage = Orphanage.objects.create(**data_dict)
-        images_data = data.getlist('images')
-        create_images(images_data, orphanage)
-        return Response(model_to_dict(orphanage), status=status.HTTP_200_OK)
+        raw_data = serializer.data
+        data_dict = {}
+        if isinstance(raw_data, QueryDict):
+            data_dict = clean_data(raw_data.dict())
+            orphanage = Orphanage.objects.create(**data_dict)
+            if 'images' in raw_data:
+                images_data = raw_data.getlist('images')
+                create_images(images_data, orphanage)
+        else:
+            orphanage = Orphanage.objects.create(**raw_data)
+        return Response(data_dict or raw_data, status=status.HTTP_200_OK)

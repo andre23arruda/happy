@@ -30,7 +30,7 @@ export default function CreateOrphanage() {
     const [imagePreview, setImagePreview] = useState<string[]>([])
 
     function handleMapClick(event: any) {
-    	setPosition({ latitude: event.latlng.lat, longitude: event.latlng.lng })
+		setPosition({ latitude: event.latlng.lat, longitude: event.latlng.lng })
 	}
 
 	async function handleSubmit(event: FormEvent) {
@@ -45,7 +45,7 @@ export default function CreateOrphanage() {
 		dataForm.append('longitude', String(position.longitude))
 		dataForm.append('instructions', instructions)
 		dataForm.append('opening_hours', opening_hours)
-		dataForm.append('open_on_weekends', open_on_weekends ? String(open_on_weekends) : '')
+		dataForm.append('open_on_weekends', String(open_on_weekends))
 
 		if (images.length > 0) {
 			images.forEach(image => {
@@ -53,7 +53,7 @@ export default function CreateOrphanage() {
 			})
 		}
 
-		await api.post('orphanages/', dataForm)
+		await api.post('happy/orphanages/', dataForm)
 		alert('Cadastro realizado com sucesso!')
 
 		history.push('/map')

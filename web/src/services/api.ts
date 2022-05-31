@@ -1,9 +1,11 @@
 import axios from 'axios'
 
-const ROTA_API = `192.168.0.22`
+const API_URL = process.env.REACT_APP_API_URL
+const LOCAL = process.env.REACT_APP_LOCAL
+
 
 const api = axios.create({
-    baseURL: `http://${ ROTA_API }:8000/api/nlw/`
+    baseURL: `http${ LOCAL ? '' : 's'}://${ API_URL }/api/`
 })
 
 export default api

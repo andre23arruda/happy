@@ -11,7 +11,7 @@ DEBUG = os.environ['DEBUG']
 ALLOWED_HOSTS = json.loads(os.environ['ALLOWED_HOSTS'])
 BASE_URL = os.environ['BASE_URL']
 
-LOGGING_CONFIG = None
+# LOGGING_CONFIG = None
 
 # Application definition
 INSTALLED_APPS = [
@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     # my apps
-    'nlw',
+    'happy',
 ]
 
 MIDDLEWARE = [

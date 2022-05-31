@@ -48,7 +48,7 @@ export default function OrphanageData() {
       } as any)
     });
 
-		await api.post('orphanages/', dataForm)
+		await api.post('happy/orphanages/', dataForm)
 		Alert.alert('Uhulll!','Cadastro realizado com sucesso!')
 
 		navigation.navigate('OrphanagesMap')

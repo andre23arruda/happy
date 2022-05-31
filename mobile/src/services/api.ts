@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const ROTA_API = `192.168.0.22`
+const API_URL = `192.168.1.14`
 
 const api = axios.create({
-    baseURL: `http://${ ROTA_API }:8000/api/nlw/`
+    baseURL: `http://${ API_URL }:8000/api/happy/`
 })
 
 export default api

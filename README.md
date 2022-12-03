@@ -25,7 +25,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Expo](https://expo.io/)
 
 ## 💻 Projeto
-**Happy é uma aplicação feita para listar casas de acolhimento de crianças e jovens em sua cidade. Exibindo horários de visita e instruções.**
+**Happy é uma aplicação feita para listar casas de acolhimento de crianças e jovens em sua cidade, exibindo horários de visita e instruções.**
+<div align="center">
+    <img alt="Models" title="Models" src="images/happy.png" width="300px" />
+</div>
+<p align="center">Models</p>
+<hr>
 
 ## Instalação
 ### Pré requisitos

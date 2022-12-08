@@ -46,16 +46,12 @@ export default function CreateOrphanage() {
 		dataForm.append('instructions', instructions)
 		dataForm.append('opening_hours', opening_hours)
 		dataForm.append('open_on_weekends', String(open_on_weekends))
-
-		if (images.length > 0) {
-			images.forEach(image => {
-				dataForm.append('images', image)
-			})
-		}
+		images.forEach(image => {
+			dataForm.append('images', image)
+		})
 
 		await api.post('happy/orphanages/', dataForm)
 		alert('Cadastro realizado com sucesso!')
-
 		history.push('/map')
 	}
 

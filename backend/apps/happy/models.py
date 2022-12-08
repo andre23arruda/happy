@@ -25,7 +25,6 @@ class Orphanage(models.Model):
         return self.name
 
 
-
 class OrphanageImage(models.Model):
     '''Model definition for Images'''
     orphanage = models.ForeignKey(Orphanage, related_name='images', on_delete=models.CASCADE)

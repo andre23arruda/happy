@@ -1,11 +1,11 @@
 import json
-from django.http import QueryDict
+from django.forms.models import model_to_dict
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.response import Response
 
-from .serializers import OrphanageSerializer
+from .serializers import OrphanageSerializer, OrphanageParser
 from ..models import Orphanage, OrphanageImage
 
 
@@ -44,14 +44,23 @@ class OrphanagesViewSet(viewsets.ModelViewSet):
 
     def create(self, serializer):
         '''Create Orphanage'''
-        raw_data = serializer.data
-        data_dict = {}
-        if isinstance(raw_data, QueryDict):
-            data_dict = clean_data(raw_data.dict())
-            orphanage = Orphanage.objects.create(**data_dict)
-            if 'images' in raw_data:
-                images_data = raw_data.getlist('images')
-                create_images(images_data, orphanage)
-        else:
-            orphanage = Orphanage.objects.create(**raw_data)
-        return Response(data_dict or raw_data, status=status.HTTP_200_OK)
+        request_data = serializer.data
+        data = OrphanageParser(request_data).data
+        orphanage = Orphanage.objects.create(**data)
+        if 'images' in request_data:
+            images = request_data.getlist('images')
+            create_images(images, orphanage)
+        response_data = OrphanageParser(orphanage).data
+        return Response(response_data)
+
+    # def create(self, serializer):
+    #     '''Create Orphanage'''
+    #     images = self.request.FILES.getlist('images')
+    #     data = serializer.data
+    #     post = self.request.POST
+    #     if post:
+    #         data = OrphanageParser(post).data
+    #     orphanage = Orphanage.objects.create(**data)
+    #     create_images(images, orphanage)
+    #     response_serializer = OrphanageParser(orphanage)
+    #     return Response(response_serializer.data)

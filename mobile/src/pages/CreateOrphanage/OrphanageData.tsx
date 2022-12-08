@@ -39,18 +39,16 @@ export default function OrphanageData() {
 		dataForm.append('instructions', instructions)
 		dataForm.append('opening_hours', opening_hours)
 		dataForm.append('open_on_weekends', open_on_weekends ? String(open_on_weekends) : '')
-
 		images.forEach((image, index) => {
 			dataForm.append('images', {
         name: `image_${ index }.jpg`,
         type: 'image/jpg',
         uri: image,
       } as any)
-    });
+    })
 
 		await api.post('happy/orphanages/', dataForm)
 		Alert.alert('Uhulll!','Cadastro realizado com sucesso!')
-
 		navigation.navigate('OrphanagesMap')
   }
 
@@ -69,9 +67,7 @@ export default function OrphanageData() {
     if (result.cancelled) return
     const { uri: image } = result
     setImages([...images, image])
-
   }
-
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
@@ -102,9 +98,13 @@ export default function OrphanageData() {
 
       <Text style={styles.label}>Foto</Text>
       <ScrollView horizontal style={styles.imagesContainer }>
-        { images.map( (image, index) => {
+        { images.map((image, index) => {
           return (
-            <Image style={styles.imagePreview } key={ index } source={{ uri: image }} />
+            <Image
+              style={styles.imagePreview }
+              key={ index }
+              source={{ uri: image }}
+            />
           )
         })}
       </ScrollView>

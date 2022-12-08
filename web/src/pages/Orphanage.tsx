@@ -26,14 +26,14 @@ interface HeaderParams { id: string }
 
 export default function Orphanage() {
 	const headerParams = useParams<HeaderParams>()
-	console.log(headerParams)
+	// console.log(headerParams)
 	const [ orphanage, setOrphanage ] = useState<Orphanage>() // Informações do orfanato
 	const [ imageIndex, setImageIndex ] = useState(0) // Imagem atual exibida, começa com zero
 
 	useEffect( () => {
-		api.get(`happy/orphanages/${ headerParams.id }/`).then(response => {
-			console.log(response.data);
-
+		api.get(`happy/orphanages/${ headerParams.id }/`)
+    .then(response => {
+			// console.log(response.data);
 			setOrphanage(response.data)
 		})
 	}, [headerParams.id] ) // tem que colocar dentro do array pq ele pode mudar
@@ -48,20 +48,29 @@ export default function Orphanage() {
 
       <main>
         <div className="orphanage-details">
-			{ orphanage.images.length ? (
-				<img src={ orphanage.images[imageIndex] } alt={ orphanage.name } />
-			) : (
-				<img src={ ORPHANAGE_IMG_DEFAULT } alt={ orphanage.name } />  // coloca imagem alternativa se não houver imagens salvas
-			) }
+        { orphanage.images ? (
+          <img
+            src={ orphanage.images[imageIndex] }
+            alt={ orphanage.name }
+          />
+        ) : (
+          <img
+            src={ ORPHANAGE_IMG_DEFAULT }
+            alt={ orphanage.name }
+          />
+        )}
 
           <div className="images">
-			  { orphanage.images.map((image, index) => {
-				  return (
-					<button key={`image_${index}`} className={ imageIndex === index ? 'active': ''} type="button" onClick={ () => { setImageIndex(index) } }>
-						<img src={ image } alt={ orphanage.name } />
-					</button>
-				  )
-			  })}
+            { orphanage.images?.map((image, index) => (
+              <button
+                key={`image_${index}`}
+                className={ imageIndex === index ? 'active': ''}
+                type="button"
+                onClick={ () => { setImageIndex(index) } }
+              >
+                <img src={ image } alt={ orphanage.name } />
+              </button>
+            ))}
           </div>
 
           <div className="orphanage-details-content">
@@ -72,7 +81,7 @@ export default function Orphanage() {
               <Map
                 center={ [orphanage.latitude, orphanage.longitude] }
                 zoom={ 16 }
-                style={ { width: '100%', height: 280 } }
+                style={{ width: '100%', height: 280 }}
                 dragging={ false }
                 touchZoom={ false }
                 zoomControl={ false }
@@ -82,10 +91,15 @@ export default function Orphanage() {
                 <TileLayer
                   url={ `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${ process.env.REACT_APP_MAP_TOKEN }` }
                 />
-                <Marker interactive={ false } icon={ mapIcon } position={ [orphanage.latitude, orphanage.longitude] } />
+
+                <Marker
+                  interactive={ false }
+                  icon={ mapIcon }
+                  position={ [orphanage.latitude, orphanage.longitude] }
+                />
               </Map>
 
-			  {/* Link para abrir rota no maps */}
+			        {/* Link para abrir rota no maps */}
               <footer>
                 <a target="_blank" rel="noopener noreferrer" href={ `https://www.google.com/maps/dir/?api=1&destination=${ orphanage.latitude },${ orphanage.longitude }` }>Ver rotas no Google Maps</a>
               </footer>
@@ -103,20 +117,19 @@ export default function Orphanage() {
                 { orphanage.opening_hours }
               </div>
 
-			  { orphanage.open_on_weekends ? (
-				<div className="open-on-weekends">
-					<FiInfo size={32} color="#39CC83" />
-					Atendemos <br />
-					fim de semana
-				</div>
-			  ) : (
-				<div className="not open-on-weekends">
-					<FiInfo size={32} color="#ba4b41" />
-					Não atendemos <br />
-					fim de semana
-				</div>
-			  )}
-
+              { orphanage.open_on_weekends ? (
+                <div className="open-on-weekends">
+                  <FiInfo size={32} color="#39CC83" />
+                  Atendemos <br />
+                  fim de semana
+                </div>
+              ) : (
+                <div className="not open-on-weekends">
+                  <FiInfo size={32} color="#ba4b41" />
+                  Não atendemos <br />
+                  fim de semana
+                </div>
+              )}
             </div>
 
             {/* <button type="button" className="contact-button">
@@ -127,5 +140,5 @@ export default function Orphanage() {
         </div>
       </main>
     </div>
-  );
+  )
 }

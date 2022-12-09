@@ -10,8 +10,6 @@ import mapIcon from '../components/MapIcon'
 
 import api from '../services/api'
 
-const ORPHANAGE_IMG_DEFAULT = 'http://localhost:3000/orphanage_default.png'
-
 interface Orphanage {
 	name: string
 	latitude: number
@@ -55,7 +53,7 @@ export default function Orphanage() {
           />
         ) : (
           <img
-            src={ ORPHANAGE_IMG_DEFAULT }
+            src="/orphanage_default.png"
             alt={ orphanage.name }
           />
         )}

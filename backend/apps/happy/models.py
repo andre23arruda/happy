@@ -1,4 +1,5 @@
 from django.contrib.sites.shortcuts import get_current_site
+from django.conf import settings
 from django.conf.locale.pt_BR import formats as portuguese
 from django.conf.locale.en import formats as english
 from django.db import models
@@ -39,7 +40,7 @@ class OrphanageImage(models.Model):
         return f'Image { self.id } - { self.orphanage }'
 
     def absolute_url(self, request):
-        if self.image:
+        if settings.LOCAL_MEDIA:
             http = request.build_absolute_uri().split('://')[0]
             return f'{ http }://{ get_current_site(request) }{ self.image.url }'
-        return ''
+        return self.image.url

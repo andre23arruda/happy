@@ -87,6 +87,7 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [ BASE_DIR, 'setup/static' ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+LOCAL_MEDIA = os.getenv('LOCAL_MEDIA', True)
 
 # apps folder
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))

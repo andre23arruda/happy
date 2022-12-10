@@ -20,3 +20,4 @@ os.environ['ALLOWED_HOSTS'] = json.dumps(get_allowed_hosts())
 os.environ['BASE_URL'] = f'http://{ get_ip_address() }:8000'
 os.environ['LANGUAGE_CODE'] = 'pt-br'
 os.environ['TIME_ZONE'] = 'America/Sao_Paulo'
+os.environ['LOCAL_MEDIA'] = 'True'
